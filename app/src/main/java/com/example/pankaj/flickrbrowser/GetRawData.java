@@ -17,8 +17,6 @@ enum DownloadStatus {
 }
 
 public class GetRawData {
-    String URL = "https://api.flickr.com/services/" +
-            "feeds/photos_public.gne?format=json&nojsoncallback=1";
 
     private String LOG_TAG = GetRawData.class.getSimpleName();
     private String mRawUrl;
@@ -36,6 +34,12 @@ public class GetRawData {
         this.mData = null;
     }
 
+    public void execute() {
+        this.mDownloadStatus = DownloadStatus.PROCESSING;
+        DownloadRawData downloadRawData = new DownloadRawData();
+        downloadRawData.execute(this.mRawUrl);
+    }
+
     public String getmData() {
         return mData;
     }
@@ -47,8 +51,11 @@ public class GetRawData {
     public class DownloadRawData extends AsyncTask<String, Void, String> {
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String webData) {
+            mData = webData;
+            Log.v(LOG_TAG, mData);
+            System.out.println(mData);
+
         }
 
         @Override
@@ -83,7 +90,7 @@ public class GetRawData {
             } catch (Exception e) {
                 Log.e(LOG_TAG, e.getMessage());
                 return null;
-                
+
             } finally {
                 if (urlConnection != null)
                     urlConnection.disconnect();
@@ -92,7 +99,7 @@ public class GetRawData {
                     try {
                         reader.close();
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        Log.e(LOG_TAG, e.getMessage());
                     }
             }
 
