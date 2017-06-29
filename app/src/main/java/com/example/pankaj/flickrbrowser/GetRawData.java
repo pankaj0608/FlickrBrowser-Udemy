@@ -18,7 +18,7 @@ enum DownloadStatus {
 
 public class GetRawData {
 
-    private String LOG_TAG = GetRawData.class.getSimpleName();
+    private String LOG_TAG = GetRawData.class.getCanonicalName();
     private String mRawUrl;
     private String mData;
     private DownloadStatus mDownloadStatus;
@@ -54,7 +54,6 @@ public class GetRawData {
         protected void onPostExecute(String webData) {
             mData = webData;
             Log.v(LOG_TAG, mData);
-            System.out.println(mData);
 
         }
 
