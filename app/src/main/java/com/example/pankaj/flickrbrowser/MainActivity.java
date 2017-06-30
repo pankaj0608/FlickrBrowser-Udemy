@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ProcessPhotos processPhotos = new ProcessPhotos("kazahkistan", true);
+        ProcessPhotos processPhotos = new ProcessPhotos("indian, food", true);
         processPhotos.execute();
 
 //        GetFlickrJsonData jsonData =
