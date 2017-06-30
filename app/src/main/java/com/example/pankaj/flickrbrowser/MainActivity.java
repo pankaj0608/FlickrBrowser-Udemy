@@ -2,15 +2,23 @@ package com.example.pankaj.flickrbrowser;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    private String LOG_TAG = GetRawData.class.getCanonicalName();
+    private static final String LOG_TAG = GetRawData.class.getCanonicalName();
 
     private String FLICKR_URL = "https://api.flickr.com/services/" +
             "feeds/photos_public.gne?format=json&nojsoncallback=1";
+
+    private List<Photo> mPhotoList = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private FlickrRecyclerViewAdpter flickrRecyclerViewAdpter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +63,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public class ProcessPhotos extends GetFlickrJsonData {
+
+        public ProcessPhotos(String searchCriteria, boolean matchAll) {
+            super(searchCriteria, matchAll);
+        }
+
+        public void execute() {
+            super.execute();
+            ProcessData processData = new ProcessData();
+            processData.execute();
+        }
+
+        public class ProcessData extends DownloadJsonData {
+
+            @Override
+            protected void onPostExecute(String webData) {
+                super.onPostExecute(webData);
+                flickrRecyclerViewAdpter = new FlickrRecyclerViewAdpter(MainActivity.this, getmPhotos());
+                mRecyclerView.setAdapter(flickrRecyclerViewAdpter);
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+                return super.doInBackground(params);
+            }
+        }
     }
 }
