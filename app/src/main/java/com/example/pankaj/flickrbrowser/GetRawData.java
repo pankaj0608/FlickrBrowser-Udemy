@@ -60,7 +60,7 @@ public class GetRawData {
         protected void onPostExecute(String webData) {
             mData = webData;
 
-            Log.v(LOG_TAG, "Data returned was: " + mData);
+           // Log.v(LOG_TAG, "Data returned was: " + mData);
 
             if(mData == null) {
                 if(mRawUrl == null) {
