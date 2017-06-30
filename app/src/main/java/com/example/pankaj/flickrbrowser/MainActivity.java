@@ -1,7 +1,6 @@
 package com.example.pankaj.flickrbrowser;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -10,7 +9,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity { //AppCompatActivity {
 
     private static final String LOG_TAG = GetRawData.class.getCanonicalName();
 
