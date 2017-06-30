@@ -7,6 +7,8 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String LOG_TAG = GetRawData.class.getCanonicalName();
+
     private String FLICKR_URL = "https://api.flickr.com/services/" +
             "feeds/photos_public.gne?format=json&nojsoncallback=1";
 
@@ -15,8 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GetRawData getRawData = new GetRawData(FLICKR_URL);
-        getRawData.execute();
+        GetFlickrJsonData jsonData =
+                new GetFlickrJsonData("android,lollipop", true);
+        jsonData.execute();
+
+
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //

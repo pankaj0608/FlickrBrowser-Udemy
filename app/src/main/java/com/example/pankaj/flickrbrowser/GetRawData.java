@@ -13,7 +13,7 @@ import java.net.URL;
  * Created by pankaj on 6/28/2017.
  */
 enum DownloadStatus {
-    IDLE, PROCESSING, NOT_INITIALSED, FAILED_OR_EMPTY, OK
+    IDLE, PROCESSING, NOT_INITIALISED, FAILED_OR_EMPTY, OK
 }
 
 public class GetRawData {
@@ -44,16 +44,34 @@ public class GetRawData {
         return mData;
     }
 
+    public void setmRawUrl(String mRawUrl) {
+        this.mRawUrl = mRawUrl;
+    }
+
+
     public DownloadStatus getmDownloadStatus() {
         return mDownloadStatus;
     }
 
     public class DownloadRawData extends AsyncTask<String, Void, String> {
 
+
         @Override
         protected void onPostExecute(String webData) {
             mData = webData;
-            Log.v(LOG_TAG, mData);
+
+            Log.v(LOG_TAG, "Data returned was: " + mData);
+
+            if(mData == null) {
+                if(mRawUrl == null) {
+                    mDownloadStatus = DownloadStatus.NOT_INITIALISED;
+                } else {
+                    mDownloadStatus = DownloadStatus.FAILED_OR_EMPTY;
+                }
+            } else {
+                // Success
+                mDownloadStatus = DownloadStatus.OK;
+            }
 
         }
 
@@ -88,7 +106,7 @@ public class GetRawData {
 
             } catch (Exception e) {
                 Log.e(LOG_TAG, e.getMessage());
-                return null;
+                return "Pankaj No Result";
 
             } finally {
                 if (urlConnection != null)
