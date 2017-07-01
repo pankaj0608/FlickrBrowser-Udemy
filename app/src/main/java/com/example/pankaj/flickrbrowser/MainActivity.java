@@ -1,7 +1,9 @@
 package com.example.pankaj.flickrbrowser;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -37,6 +39,21 @@ public class MainActivity extends BaseActivity { //AppCompatActivity {
 //        GetFlickrJsonData jsonData =
 //                new GetFlickrJsonData("android,lollipop", true);
 //        jsonData.execute();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(flickrRecyclerViewAdpter != null) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+            String query = sharedPreferences.getString(FLICKR_QUERY, "");
+
+            if(query != null && query.length() > 0) {
+                ProcessPhotos processPhotos = new ProcessPhotos(query, true);
+                processPhotos.execute();
+            }
+        }
     }
 
     @Override
