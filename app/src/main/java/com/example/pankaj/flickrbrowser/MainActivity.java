@@ -33,8 +33,20 @@ public class MainActivity extends BaseActivity { //AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ProcessPhotos processPhotos = new ProcessPhotos("indian, food", true);
-        processPhotos.execute();
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        String query = sharedPreferences.getString(FLICKR_QUERY, "");
+
+        if(query != null && query.length() > 0) {
+            ProcessPhotos processPhotos = new ProcessPhotos(query, true);
+            processPhotos.execute();
+        }
+        else {
+            ProcessPhotos processPhotos = new ProcessPhotos("indian, food", true);
+            processPhotos.execute();
+        }
+
 
 //        GetFlickrJsonData jsonData =
 //                new GetFlickrJsonData("android,lollipop", true);
