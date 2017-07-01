@@ -26,8 +26,8 @@ public class BaseActivity extends AppCompatActivity {
     protected Toolbar activateToolbarWithHomeEnabled() {
         activateToolbar();
 
-        if(mToolBar == null) {
-           getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        if(mToolBar != null) {
+           getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         return mToolBar;
