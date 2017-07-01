@@ -45,7 +45,8 @@ public class MainActivity extends BaseActivity { //AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(flickrRecyclerViewAdpter != null) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences sharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
             String query = sharedPreferences.getString(FLICKR_QUERY, "");
 
