@@ -28,24 +28,26 @@
         <item name="android:textColor">@color/flickrPrimaryTextColor</item>
         <item name="android:textSize">18sp</item>
     </style>
+    <style name="Theme.Flickr.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.Flickr.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>
 
 
-<!--<resources>-->
+        <!--<resources>-->
 
-<!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
-<!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-    <!--<item name="colorPrimary">@color/flickrPrimaryBackgroundColor</item>-->
-    <!--<item name="colorPrimaryDark">@color/flickrSecondaryBackgroundColor</item>-->
-    <!--<item name="colorAccent">@color/flickrColorBackgroundAccent</item>-->
-<!--</style>-->
-<!--<style name="AppTheme.NoActionBar">-->
-    <!--<item name="windowActionBar">false</item>-->
-    <!--<item name="windowNoTitle">true</item>-->
-<!--</style>-->
-<!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
-<!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>-->
+        <!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
+        <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/flickrPrimaryBackgroundColor</item>-->
+        <!--<item name="colorPrimaryDark">@color/flickrSecondaryBackgroundColor</item>-->
+        <!--<item name="colorAccent">@color/flickrColorBackgroundAccent</item>-->
+        <!--</style>-->
+        <!--<style name="AppTheme.NoActionBar">-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--</style>-->
+        <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
+        <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>-->
 
-<!--</resources>-->
+        <!--</resources>-->
