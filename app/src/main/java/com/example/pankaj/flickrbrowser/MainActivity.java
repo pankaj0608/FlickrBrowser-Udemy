@@ -38,14 +38,16 @@ public class MainActivity extends BaseActivity { //AppCompatActivity {
 
         String query = sharedPreferences.getString(FLICKR_QUERY, "");
 
-        if(query != null && query.length() > 0) {
-            ProcessPhotos processPhotos = new ProcessPhotos(query, true);
-            processPhotos.execute();
-        }
-        else {
-            ProcessPhotos processPhotos = new ProcessPhotos("indian, food", true);
-            processPhotos.execute();
-        }
+        flickrRecyclerViewAdpter = new FlickrRecyclerViewAdpter(this, new ArrayList<Photo>());
+        mRecyclerView.setAdapter(flickrRecyclerViewAdpter);
+//        if(query != null && query.length() > 0) {
+//            ProcessPhotos processPhotos = new ProcessPhotos(query, true);
+//            processPhotos.execute();
+//        }
+//        else {
+//            ProcessPhotos processPhotos = new ProcessPhotos("indian, food", true);
+//            processPhotos.execute();
+//        }
 
 
 //        GetFlickrJsonData jsonData =
@@ -56,17 +58,14 @@ public class MainActivity extends BaseActivity { //AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(flickrRecyclerViewAdpter != null) {
-            SharedPreferences sharedPreferences =
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-            String query = sharedPreferences.getString(FLICKR_QUERY, "");
+        String query = sharedPreferences.getString(FLICKR_QUERY, "india,flag");
 
-            if(query != null && query.length() > 0) {
-                ProcessPhotos processPhotos = new ProcessPhotos(query, true);
-                processPhotos.execute();
-            }
-        }
+        ProcessPhotos processPhotos = new ProcessPhotos(query, true);
+        processPhotos.execute();
+
     }
 
     @Override
@@ -88,7 +87,7 @@ public class MainActivity extends BaseActivity { //AppCompatActivity {
             return true;
         }
 
-        if(id == R.id.menu_search) {
+        if (id == R.id.menu_search) {
             Intent intent = new Intent(this, SearchActivity.class);
             startActivity(intent);
             return true;
